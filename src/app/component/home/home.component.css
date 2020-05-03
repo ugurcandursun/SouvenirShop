@@ -1,0 +1,30 @@
+
+
+.box-shadow { box-shadow: 0 .25rem .125rem rgba(0, 0, 0, .05); }
+.unchecked{
+ 
+    width: 14px;
+    height: 14px;
+    transform: scale(0.8); 
+}
+.checked {
+    color: orange;
+    width: 14px;
+    height: 14px;
+    transform: scale(0.8); 
+  }
+ 
+  .amount{
+    color: orange;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .modal .show{
+      display: block;
+  }
+  
+ .bestproduct{
+     background-color: white;
+     border: none;
+     
+ }
