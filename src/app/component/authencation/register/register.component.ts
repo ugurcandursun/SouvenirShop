@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     this.httpClinet.get('http://localhost:57367/api/customers')
     .subscribe(
       (respose) => {
-        debugger;
+       
       console.log(respose);
        }
     );

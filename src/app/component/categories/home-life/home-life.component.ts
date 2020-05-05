@@ -35,12 +35,12 @@ export class HomeLifeComponent implements OnInit {
     checked:false
   }]
   isChecked($event,item){
-    debugger;
+    
     item.checked=true;
   
     this.try();
     this.denemetwo.forEach(d=>{
-      console.log(d.name+d.checked);
+      
     })
 
   }

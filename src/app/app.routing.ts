@@ -21,7 +21,7 @@ import { LoginComponent } from './component/authencation/login/login.component';
 const APP_ROUTES: Routes = [
     
     {path: 'create', component: EmployeeComponent },
-    {path:'',component:HomeComponent},
+    {path:'home',component:HomeComponent},
     {path:"list",component:EmployeeListComponent},
     {path:"man",component:ManComponent},
     {path:"woman",component:WomanComponent},
@@ -33,7 +33,9 @@ const APP_ROUTES: Routes = [
     {path:"watchesaccessories",component:WatchesAccessoriesComponent},
     {path:"productinfo",component:ProductinfoComponent},
     {path:"register",component:RegisterComponent},
-    {path:"login",component:LoginComponent}
+    {path:"login",component:LoginComponent},
+    {path:"app",component:AppComponent},
+    {path:"",component:HomeComponent}
 
     
   

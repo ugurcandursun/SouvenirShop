@@ -29,7 +29,7 @@ customer=
     this.httpClinet.get('http://localhost:57367/api/customers')
     .subscribe(
       (respose) => {
-        debugger;
+      
       console.log(respose);
        }
     );
@@ -39,11 +39,11 @@ customer=
   savecustomer(){
     this.customer.Surname=this.customer.Name;
     this.customer.IsLogin=false;
-    debugger;
+    
     this.httpClinet.post('http://localhost:57367/api/customers',this.customer)
     .subscribe(
       (respose) => {
-        debugger;
+        
       console.log(respose);
        }
     );

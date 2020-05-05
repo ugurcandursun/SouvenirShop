@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { Router, RouterState } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { dependenciesFromGlobalMetadata } from '@angular/compiler/src/render3/r3_factory';
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -35,10 +36,10 @@ export class LoginComponent implements OnInit {
       this.allCustomer = response;
     });
 
-    console.log(this.customer);
+   
   }
   savecustomer() {
-    debugger;
+   
     this.allCustomer.forEach((element) => {
       if (element.Email_Address === this.customer.Email_Address) {
         if (element.Password === this.customer.Password) {
@@ -52,14 +53,17 @@ export class LoginComponent implements OnInit {
               this.customer
             )
             .subscribe((response) => {
-              debugger;
-              console.log(response);
+             
+              
             });
-          this.toastr.success(
-            this.customer.Name + " " + this.customer.Surname,
-            "Welcome!"
-          );
-          this.router.navigateByUrl("");
+          // this.toastr.success(
+          //   this.customer.Name + " " + this.customer.Surname,
+          //   "Welcome!"
+          // );
+          
+          localStorage.setItem('dataSource', this.customerID);
+          localStorage.setItem('data', "1");
+          this.router.navigate(['home']);
         } else {
           this.errorMessage = "Please check the information entered";
           this.isLoginError = true;
@@ -69,7 +73,6 @@ export class LoginComponent implements OnInit {
         this.isLoginError = true;
       }
     });
-
-    console.log(this.customerID);
+   
   }
 }

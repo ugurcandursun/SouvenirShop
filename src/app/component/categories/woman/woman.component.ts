@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-woman',
@@ -7,8 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WomanComponent implements OnInit {
 
-  constructor() { }
-
+  constructor( private httpClinet: HttpClient,
+    private router: Router,
+    private toastr: ToastrService,
+    private route: ActivatedRoute) {  
+  }
+  isLogin:boolean=true;
   ngOnInit(): void {
   }
 
