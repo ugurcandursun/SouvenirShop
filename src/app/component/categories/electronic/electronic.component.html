@@ -4,26 +4,18 @@
       
       <h5>Gender</h5  >
      
-<label class="genderclass">One
+<label class="genderclass">Woman
   <input type="checkbox">
   <span class="checkmark"></span>
 </label>
-<label class="genderclass">Two
+<label class="genderclass">Man
   <input type="checkbox">
   <span class="checkmark"></span>
 </label>
+
 <br>
-<h5>Size</h5  >
-     
-  <label class="genderclass">Small
-    <input type="checkbox">
-    <span class="checkmark"></span>
-  </label>
-  <label class="genderclass">Medium
-    <input type="checkbox">
-    <span class="checkmark"></span>
-  </label>
-  <br>
+
+  
   <h5>Color</h5  >
   <button class="button button1"></button>
   <button class="button button2"></button>
@@ -39,23 +31,23 @@
   <br>
   <h5>Amount</h5 >
     
-    <label class="genderclass">0-50 TL
+    <label class="genderclass">5000-750 $
       <input type="checkbox">
       <span class="checkmark"></span>
     </label>
-    <label class="genderclass">50-100 TL
+    <label class="genderclass">750-1000 $
       <input type="checkbox">
       <span class="checkmark"></span>
     </label>
-    <label class="genderclass">100-150 TL
+    <label class="genderclass">1000-1500 $
       <input type="checkbox">
       <span class="checkmark"></span>
     </label>
-    <label class="genderclass">150-200 TL
+    <label class="genderclass">1500-2000 $
       <input type="checkbox">
       <span class="checkmark"></span>
     </label>
-    <label class="genderclass">200- TL
+    <label class="genderclass">2000- $
       <input type="checkbox">
       <span class="checkmark"></span>
     </label>
@@ -63,61 +55,20 @@
   
     </div> 
     <div class="col-9" >
-      <div class="row">
-        <div class="col-md-3">
+      <div class="row" >
+        <div class="col-md" *ngFor="let item of products">
           <button class="bestproduct" (click)="clickButton()">          
           <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
+            <img class="card-img-top" src="{{item.ImageURL}}" alt="Card image cap" style="width: 220px;height: 180px;">
             <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
+              <p class="card-text">{{item.ProductDescription}}</p>
+              <div *ngFor="let number of [0,1,2,3,4];let i = index" style="display: inline;">
+                <span *ngIf="i<item.AverageCustomerRating" class="fa fa-star checked"></span>
+                <span *ngIf="i>=item.AverageCustomerRating" class="fa fa-star unchecked"></span>
+              </div>
               
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
               <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
+                <p class="amount">{{item.Price}} $</p>
                 </div>
            
             </div>
@@ -125,188 +76,6 @@
           </button>
         </div>
   
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-  
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-  
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button class="bestproduct" (click)="clickButton()">          
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1521478706270-f2e33c203d95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">Akıllı pembe renk saat</p>
-              
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <span class="fa fa-star unchecked"></span>
-              <div class="d-flex justify-content-between align-items-center" style="float: right;">
-                <p class="amount">150 TL</p>
-                </div>
-           
-            </div>
-          </div>
-          </button>
-        </div>
      
       </div>
     </div>

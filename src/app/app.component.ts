@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Component } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Router, ActivatedRoute } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = 'eShopSPA';
+  title = "eShopSPA";
   readonly rootURL = "http://localhost:57367/api";
   customer = {
     id: 0,
@@ -29,40 +29,23 @@ export class AppComponent {
     private httpClinet: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    private route: ActivatedRoute,
-    
-    
+    private route: ActivatedRoute
   ) {
-    if(localStorage.getItem('dataSource'))
-    {
-      debugger;
-      this.deneme=true;
-   
-      
+    if (localStorage.getItem("dataSource")) {
+      this.deneme = true;
     }
   }
-  
-    
-  
-  
-  
-  
-  deneme:boolean=false;
+
+  deneme: boolean = false;
   ngOnInit() {
-    
-    
     this.httpClinet.get(this.rootURL + "/customer").subscribe((response) => {
       this.allCustomer = response;
     });
-    
-    
-    
-  
   }
- 
-  
+  logout(){
+    debugger;
+    localStorage.removeItem("dataSource");
+    this.deneme=false;
+    this.router.navigate(['/home']);
+  }
 }
-
-
-
-

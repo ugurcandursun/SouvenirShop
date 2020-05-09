@@ -33,13 +33,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.httpClinet.get(this.rootURL + "/customer").subscribe((response) => {
+      debugger;
       this.allCustomer = response;
     });
 
    
   }
   savecustomer() {
-   
+   debugger;
     this.allCustomer.forEach((element) => {
       if (element.Email_Address === this.customer.Email_Address) {
         if (element.Password === this.customer.Password) {
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
               this.customer
             )
             .subscribe((response) => {
-             
+             debugger;
               
             });
           // this.toastr.success(
