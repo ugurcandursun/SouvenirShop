@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProductinfoComponent } from './component/productinfo/productinfo.component';
 import { RegisterComponent } from './component/authencation/register/register.component';
 import { LoginComponent } from './component/authencation/login/login.component';
+import { BasketComponent } from './component/basket/basket.component';
 
 @NgModule({
    declarations: [
@@ -41,7 +42,7 @@ import { LoginComponent } from './component/authencation/login/login.component';
       WatchesAccessoriesComponent,
       HomeComponent,  
       ProductinfoComponent,       
-      RegisterComponent, LoginComponent,
+      RegisterComponent, LoginComponent, BasketComponent,
       
    ],
    imports: [

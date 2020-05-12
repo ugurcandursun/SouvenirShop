@@ -17,6 +17,7 @@ import { ProductinfoComponent } from './component/productinfo/productinfo.compon
 import { WatchesAccessoriesComponent } from './component/categories/watches-accessories/watches-accessories.component';
 import { RegisterComponent } from './component/authencation/register/register.component';
 import { LoginComponent } from './component/authencation/login/login.component';
+import { BasketComponent } from './component/basket/basket.component';
 
 const APP_ROUTES: Routes = [
     
@@ -35,7 +36,8 @@ const APP_ROUTES: Routes = [
     {path:"register",component:RegisterComponent},
     {path:"login",component:LoginComponent},
     {path:"app",component:AppComponent},
-    {path:"",component:HomeComponent}
+    {path:"",component:HomeComponent},
+    {path:"basket",component:BasketComponent}
 
     
   

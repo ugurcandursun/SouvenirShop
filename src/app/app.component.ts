@@ -34,8 +34,15 @@ export class AppComponent {
     if (localStorage.getItem("dataSource")) {
       this.deneme = true;
     }
+    if(localStorage.getItem("basketproductlength"))
+    {
+      this.isBasketHaveProduct=true;
+      this.basketLength=localStorage.getItem("basketproductlength");
+    }
+    
   }
-
+  isBasketHaveProduct:boolean=false;
+  basketLength;
   deneme: boolean = false;
   ngOnInit() {
     this.httpClinet.get(this.rootURL + "/customer").subscribe((response) => {

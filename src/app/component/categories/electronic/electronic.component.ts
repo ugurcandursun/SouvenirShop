@@ -38,8 +38,9 @@ export class ElectronicComponent implements OnInit {
       });
   }
 
-  clickButton() {
-    this.router.navigateByUrl("productinfo");
+  clickButton($event,product:any) {
+    localStorage.setItem('productID',product.ProductID);
+    this.router.navigate(["/productinfo"]);
   }
   clickPrice(event: any) {
     debugger;

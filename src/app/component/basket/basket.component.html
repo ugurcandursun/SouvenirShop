@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+    <h5>Sepetim ({{basketProducts.length}} Ürün)</h5>
+    <button style="background-color: white;border:solid 0px grey;margin-left: 320px;">Alışverişe Devam Et</button>
+    </div>
+    <div class="row">
+        <div class="col-7 " >
+            <div class="row colseven" *ngFor="let item of basketProducts">
+                <div class="col-2 product">
+                    <img class="productimage" src="{{item.ImageURL}}">
+                </div>
+                <div class="col-8 description">
+                   Description:{{item.ProductDescription}}<br>
+                   Color:{{item.Color}}<br>
+                   Price:{{item.Price}} TL <br>
+                   Estimated Delivery Date:{{startDate| date:'dd-MM-yyyy'}}-{{endDate| date:'dd-MM-yyyy'}}                  
+                </div>
+                
+            </div>
+           
+
+        </div>
+        <div class="col-3 totalamount"> 
+            <button style="background-color: orange;float: center;color:white;font-family:'bold';width: 100%;"> Confirm Basket ></button>
+
+            <div style="border:solid 1px grey;text-align: center;margin-top: 25px;">
+                <h5>Order Summary</h5>
+                <p>Total Amount: {{totalAmount}} TL</p>
+            </div>
+           <br>
+           <button style="background-color: orange;float: center;color:white;font-family:'bold';width: 100%;"> Confirm Basket ></button>
+
+        </div>
+       
+        
+      
+        
+       
+    </div>
+</div>
