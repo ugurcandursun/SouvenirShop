@@ -75,7 +75,7 @@
   top: 5px;
   width: 5px;
   height: 10px;
-  border: solid white;
+  border: solid greenyellow;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -99,7 +99,7 @@
 .button3 {border-radius: 50%;background-color: white;}
 .button4 {border-radius: 50%;background-color: yellow;}
 .button5 {border-radius: 50%;background-color: blue;}
-.button6 {border-radius: 50%;background-color: green;}
+.button6 {border-radius: 50%;background-color: grey;}
 .button7 {border-radius: 50%;background-color:rebeccapurple}
 .button8 {border-radius: 50%;background-color:orange;}
 .button9 {border-radius: 50%;background-color:pink;}

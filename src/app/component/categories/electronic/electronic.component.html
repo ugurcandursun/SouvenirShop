@@ -5,58 +5,67 @@
       <h5>Gender</h5  >
      
 <label class="genderclass">Woman
-  <input type="checkbox">
+  <input *ngIf="!isMan" type="checkbox" [(ngModel)]="isWoman" (change)="clickGender(isChecked?'A':'B')">
   <span class="checkmark"></span>
 </label>
 <label class="genderclass">Man
-  <input type="checkbox">
+  <input *ngIf="!isWoman"type="checkbox"  [(ngModel)]="isMan" (change)="clickGender(isChecked?'A':'B')">
   <span class="checkmark"></span>
 </label>
 
 <br>
 
   
-  <h5>Color</h5  >
-  <button class="button button1"></button>
-  <button class="button button2"></button>
-  <button class="button button3"></button>
-  <button class="button button4"></button>
-  <button class="button button5"></button>
-  <button class="button button6"></button>
-  <button class="button button7"></button>
-  <button class="button button8"></button>
-  <button class="button button9"></button>
-  <button class="button button10"></button>
-  <br>
+  <h5>Color</h5>
+ 
+  <label class="genderclass">Red
+    <input *ngIf="!isBlack&&!isWhite&&!isOrange&&!isGrey" type="checkbox"  [(ngModel)]="isRed" (change)="clickColor(isChecked?'A':'B')">
+    <span  class="checkmark" style="background-color: red;"></span>
+  </label>
+  <label class="genderclass">Black
+    <input *ngIf="!isRed&&!isWhite&&!isOrange&&!isGrey" type="checkbox" [(ngModel)]="isBlack" (change)="clickColor(isChecked?'A':'B')">
+    <span  class="checkmark" style="background-color:black;"></span>
+  </label>
+  <label class="genderclass">White
+    <input *ngIf="!isBlack&&!isRed&&!isOrange&&!isGrey" type="checkbox" [(ngModel)]="isWhite" (change)="clickColor(isChecked?'A':'B')">
+    <span class="checkmark" style="background-color: white; border: solid black;"></span>
+  </label>
+  <label class="genderclass">Grey
+    <input *ngIf="!isBlack&&!isWhite&&!isOrange&&!isRed" type="checkbox" [(ngModel)]="isGrey" (change)="clickColor(isChecked?'A':'B')">
+    <span class="checkmark" style="background-color:grey;"></span>
+  </label>
+  <label class="genderclass">Orange
+    <input *ngIf="!isBlack&&!isWhite&&!isRed&&!isGrey" type="checkbox" [(ngModel)]="isOrange" (change)="clickColor(isChecked?'A':'B')">
+    <span class="checkmark" style="background-color:orange;"></span>
+  </label>
+  
   <br>
   <h5>Amount</h5 >
     
-    <label class="genderclass">5000-750 $
-      <input type="checkbox">
+    <label class="genderclass">0-500 $
+      <input *ngIf="!isSecondRange&&!isThirdRange&&!isFourthRange" type="checkbox" [(ngModel)]="isFirstRange" (change)="clickPrice(isChecked?'A':'B')">
       <span class="checkmark"></span>
     </label>
-    <label class="genderclass">750-1000 $
-      <input type="checkbox">
+    <label class="genderclass">500-1100 $
+      <input *ngIf="!isFirstRange&&!isThirdRange&&!isFourthRange" type="checkbox"   [(ngModel)]="isSecondRange" (change)="clickPrice(isChecked?'A':'B')">
       <span class="checkmark"></span>
     </label>
-    <label class="genderclass">1000-1500 $
-      <input type="checkbox">
+    <label class="genderclass">1500-3000 $
+      <input *ngIf="!isFirstRange&&!isSecondRange&&!isFourthRange"type="checkbox"  [(ngModel)]="isThirdRange" (change)="clickPrice(isChecked?'A':'B')"> 
       <span class="checkmark"></span>
     </label>
-    <label class="genderclass">1500-2000 $
-      <input type="checkbox">
+    <label class="genderclass">3000- $
+      <input *ngIf="!isFirstRange&&!isSecondRange&&!isThirdRange"type="checkbox"   [(ngModel)]="isFourthRange" (change)="clickPrice(isChecked?'A':'B')"> 
       <span class="checkmark"></span>
     </label>
-    <label class="genderclass">2000- $
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
+    
+    <button (click)="filter()">Filter</button>
       
   
     </div> 
     <div class="col-9" >
       <div class="row" >
-        <div class="col-md" *ngFor="let item of products">
+        <div class="col-md" *ngFor="let item of filterProducts">
           <button class="bestproduct" (click)="clickButton()">          
           <div class="card mb-4 box-shadow">
             <img class="card-img-top" src="{{item.ImageURL}}" alt="Card image cap" style="width: 220px;height: 180px;">
