@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
     <h5>Sepetim ({{basketProducts.length}} Ürün)</h5>
-    <button style="background-color: white;border:solid 0px grey;margin-left: 320px;">Alışverişe Devam Et</button>
+    <a href="/home" style="color: orange;margin-left: 340px;font-style: italic;
+    font-family: fantasy;">Alışverişe Devam Et</a>
     </div>
     <div class="row">
         <div class="col-7 " >
@@ -15,20 +16,23 @@
                    Price:{{item.Price}} TL <br>
                    Estimated Delivery Date:{{startDate| date:'dd-MM-yyyy'}}-{{endDate| date:'dd-MM-yyyy'}}                  
                 </div>
+                <div class="col-2" style="margin-top: 50px;">
+                    <button style="background-color:orange;color: white;"  (click)="deleteBasketItem(item)" >Delete</button>
+                 </div>
                 
             </div>
            
 
         </div>
         <div class="col-3 totalamount"> 
-            <button style="background-color: orange;float: center;color:white;font-family:'bold';width: 100%;"> Confirm Basket ></button>
+            <button (click)="goPayment()" style="background-color: orange;float: center;color:white;font-family:'bold';width: 100%;"> Confirm Basket ></button>
 
             <div style="border:solid 1px grey;text-align: center;margin-top: 25px;">
                 <h5>Order Summary</h5>
                 <p>Total Amount: {{totalAmount}} TL</p>
             </div>
            <br>
-           <button style="background-color: orange;float: center;color:white;font-family:'bold';width: 100%;"> Confirm Basket ></button>
+           <button (click)="goPayment()" style="background-color: orange;float: center;color:white;font-family:'bold';width: 100%;"> Confirm Basket ></button>
 
         </div>
        

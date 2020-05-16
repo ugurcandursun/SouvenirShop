@@ -25,6 +25,7 @@ import { ProductinfoComponent } from './component/productinfo/productinfo.compon
 import { RegisterComponent } from './component/authencation/register/register.component';
 import { LoginComponent } from './component/authencation/login/login.component';
 import { BasketComponent } from './component/basket/basket.component';
+import { PaymentComponent } from './component/payment/payment.component';
 
 @NgModule({
    declarations: [
@@ -42,7 +43,7 @@ import { BasketComponent } from './component/basket/basket.component';
       WatchesAccessoriesComponent,
       HomeComponent,  
       ProductinfoComponent,       
-      RegisterComponent, LoginComponent, BasketComponent,
+      RegisterComponent, LoginComponent, BasketComponent, PaymentComponent,
       
    ],
    imports: [

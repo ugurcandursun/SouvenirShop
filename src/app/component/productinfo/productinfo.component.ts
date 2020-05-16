@@ -34,5 +34,6 @@ export class ProductinfoComponent implements OnInit {
     localStorage.setItem('productinBasket', JSON.stringify(a));
    localStorage.setItem('basketproductlength',a.length.toString());
     console.log( localStorage.setItem('productinBasket', JSON.stringify(a)));
+    window.location.reload(); 
   }
 }

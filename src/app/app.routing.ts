@@ -18,6 +18,7 @@ import { WatchesAccessoriesComponent } from './component/categories/watches-acce
 import { RegisterComponent } from './component/authencation/register/register.component';
 import { LoginComponent } from './component/authencation/login/login.component';
 import { BasketComponent } from './component/basket/basket.component';
+import { PaymentComponent } from './component/payment/payment.component';
 
 const APP_ROUTES: Routes = [
     
@@ -37,7 +38,9 @@ const APP_ROUTES: Routes = [
     {path:"login",component:LoginComponent},
     {path:"app",component:AppComponent},
     {path:"",component:HomeComponent},
-    {path:"basket",component:BasketComponent}
+    {path:"basket",component:BasketComponent},
+    {path:"payment",component:PaymentComponent},
+
 
     
   
