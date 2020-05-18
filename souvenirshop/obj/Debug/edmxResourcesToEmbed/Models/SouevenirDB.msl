@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SouvenirShopModelStoreContainer" CdmEntityContainer="SouvenirShopEntities2">
-    <EntitySetMapping Name="Computers">
-      <EntityTypeMapping TypeName="SouvenirShopModel.Computers">
-        <MappingFragment StoreEntitySet="Computers">
-          <ScalarProperty Name="ComputerID" ColumnName="ComputerID" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="RamCapacity" ColumnName="RamCapacity" />
-          <ScalarProperty Name="ProcessorTechnology" ColumnName="ProcessorTechnology" />
-          <ScalarProperty Name="Monitor_Size" ColumnName="Monitor_Size" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="SouvenirShopModelStoreContainer" CdmEntityContainer="SouvenirShopEntities3">
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="SouvenirShopModel.Customers">
         <MappingFragment StoreEntitySet="Customers">
@@ -22,16 +10,6 @@
           <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
           <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
           <ScalarProperty Name="Password" ColumnName="Password" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MobilePhones">
-      <EntityTypeMapping TypeName="SouvenirShopModel.MobilePhones">
-        <MappingFragment StoreEntitySet="MobilePhones">
-          <ScalarProperty Name="MobilePhoneID" ColumnName="MobilePhoneID" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="RamCapacity" ColumnName="RamCapacity" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -21,6 +21,7 @@ namespace souvenirshop.Models
         public int Ratinginformation { get; set; }
         public int ProductID { get; set; }
     
+        public virtual Customers Customers { get; set; }
         public virtual Products Products { get; set; }
     }
 }

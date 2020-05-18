@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SouvenirShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Computers">
-    <Key>
-      <PropertyRef Name="ComputerID" />
-    </Key>
-    <Property Name="ComputerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="RamCapacity" Type="varchar" MaxLength="75" Nullable="false" />
-    <Property Name="ProcessorTechnology" Type="varchar" MaxLength="75" Nullable="false" />
-    <Property Name="Monitor_Size" Type="varchar" MaxLength="75" Nullable="false" />
-    <Property Name="ProductID" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Customers">
     <Key>
       <PropertyRef Name="CustomerID" />
@@ -21,15 +10,6 @@
     <Property Name="Email_Address" Type="text" Nullable="false" />
     <Property Name="IsLogin" Type="bit" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="MobilePhones">
-    <Key>
-      <PropertyRef Name="MobilePhoneID" />
-    </Key>
-    <Property Name="MobilePhoneID" Type="int" Nullable="false" />
-    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="RamCapacity" Type="varchar" MaxLength="75" Nullable="false" />
-    <Property Name="ProductID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -55,32 +35,6 @@
     <Property Name="Ratinginformation" Type="int" Nullable="false" />
     <Property Name="ProductID" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="fk_ProductID">
-    <End Role="Products" Type="Self.Products" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="ProductID" />
-      </Principal>
-      <Dependent Role="Computers">
-        <PropertyRef Name="ProductID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_ProductIdd">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="MobilePhones" Type="Self.MobilePhones" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="ProductID" />
-      </Principal>
-      <Dependent Role="MobilePhones">
-        <PropertyRef Name="ProductID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Sales_Customers">
     <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
     <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
@@ -108,19 +62,9 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="SouvenirShopModelStoreContainer">
-    <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="MobilePhones" EntityType="Self.MobilePhones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="fk_ProductID" Association="Self.fk_ProductID">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="Computers" EntitySet="Computers" />
-    </AssociationSet>
-    <AssociationSet Name="fk_ProductIdd" Association="Self.fk_ProductIdd">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="MobilePhones" EntitySet="MobilePhones" />
-    </AssociationSet>
     <AssociationSet Name="FK_Sales_Customers" Association="Self.FK_Sales_Customers">
       <End Role="Customers" EntitySet="Customers" />
       <End Role="Sales" EntitySet="Sales" />

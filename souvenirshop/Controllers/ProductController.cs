@@ -12,44 +12,45 @@ using souvenirshop.Models;
 
 namespace souvenirshop.Controllers
 {
-    public class CustomerController : ApiController
+    public class ProductController : ApiController
     {
         private SouvenirShopEntities3 db = new SouvenirShopEntities3();
 
-        // GET: api/Customer
-        public IQueryable<Customers> GetCustomers()
+        // GET: api/Product
+        public IQueryable<Products> GetProducts()
         {
-            return db.Customers;
+            return db.Products;
         }
 
-        // GET: api/Customer/5
-        [ResponseType(typeof(Customers))]
-        public IHttpActionResult GetCustomers(int id)
+        // GET: api/Product/5
+        [ResponseType(typeof(Products))]
+        public IHttpActionResult GetProducts(int id)
         {
-            Customers customers = db.Customers.Find(id);
-            if (customers == null)
+            Products products = db.Products.Find(id);
+            
+            if (products == null)
             {
                 return NotFound();
             }
 
-            return Ok(customers);
+            return Ok(products);
         }
 
-        // PUT: api/Customer/5
+        // PUT: api/Product/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCustomers(int id, Customers customers)
+        public IHttpActionResult PutProducts(int id, Products products)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != customers.CustomerID)
+            if (id != products.ProductID)
             {
                 return BadRequest();
             }
 
-            db.Entry(customers).State = EntityState.Modified;
+            db.Entry(products).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +58,7 @@ namespace souvenirshop.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomersExists(id))
+                if (!ProductsExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +71,35 @@ namespace souvenirshop.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Customer
-        [ResponseType(typeof(Customers))]
-        public IHttpActionResult PostCustomers(Customers customers)
+        // POST: api/Product
+        [ResponseType(typeof(Products))]
+        public IHttpActionResult PostProducts(Products products)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Customers.Add(customers);
+            db.Products.Add(products);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = customers.CustomerID }, customers);
+            return CreatedAtRoute("DefaultApi", new { id = products.ProductID }, products);
         }
 
-        // DELETE: api/Customer/5
-        [ResponseType(typeof(Customers))]
-        public IHttpActionResult DeleteCustomers(int id)
+        // DELETE: api/Product/5
+        [ResponseType(typeof(Products))]
+        public IHttpActionResult DeleteProducts(int id)
         {
-            Customers customers = db.Customers.Find(id);
-            if (customers == null)
+            Products products = db.Products.Find(id);
+            if (products == null)
             {
                 return NotFound();
             }
 
-            db.Customers.Remove(customers);
+            db.Products.Remove(products);
             db.SaveChanges();
 
-            return Ok(customers);
+            return Ok(products);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +111,9 @@ namespace souvenirshop.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CustomersExists(int id)
+        private bool ProductsExists(int id)
         {
-            return db.Customers.Count(e => e.CustomerID == id) > 0;
+            return db.Products.Count(e => e.ProductID == id) > 0;
         }
     }
 }

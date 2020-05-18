@@ -5,18 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="SouvenirShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Computers">
-          <Key>
-            <PropertyRef Name="ComputerID" />
-          </Key>
-          <Property Name="ComputerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Color" Type="varchar" MaxLength="75" Nullable="false" />
-          <Property Name="RamCapacity" Type="varchar" MaxLength="75" Nullable="false" />
-          <Property Name="ProcessorTechnology" Type="varchar" MaxLength="75" Nullable="false" />
-          <Property Name="Monitor_Size" Type="varchar" MaxLength="75" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="CustomerID" />
@@ -38,6 +26,8 @@
           <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ImageURL" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="ProductDescription" Type="text" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Sales">
           <Key>
@@ -50,17 +40,15 @@
           <Property Name="Ratinginformation" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="fk_ProductID">
-          <End Role="Products" Type="Self.Products" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
+        <Association Name="FK_Sales_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="ProductID" />
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
             </Principal>
-            <Dependent Role="Computers">
-              <PropertyRef Name="ProductID" />
+            <Dependent Role="Sales">
+              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -79,13 +67,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SouvenirShopModelStoreContainer">
-          <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="fk_ProductID" Association="Self.fk_ProductID">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Computers" EntitySet="Computers" />
+          <AssociationSet Name="FK_Sales_Customers" Association="Self.FK_Sales_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
           <AssociationSet Name="fkProductID" Association="Self.fkProductID">
             <End Role="Products" EntitySet="Products" />
@@ -97,19 +84,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SouvenirShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Computers">
-          <Key>
-            <PropertyRef Name="ComputerID" />
-          </Key>
-          <Property Name="ComputerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Color" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RamCapacity" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProcessorTechnology" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Monitor_Size" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.fk_ProductID" FromRole="Computers" ToRole="Products" />
-        </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="CustomerID" />
@@ -120,6 +94,7 @@
           <Property Name="Email_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsLogin" Type="Boolean" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Customers" FromRole="Customers" ToRole="Sales" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -131,7 +106,8 @@
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ImageURL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Computers" Relationship="Self.fk_ProductID" FromRole="Products" ToRole="Computers" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sales" Relationship="Self.fkProductID" FromRole="Products" ToRole="Sales" />
         </EntityType>
         <EntityType Name="Sales">
@@ -144,19 +120,18 @@
           <Property Name="Howmanyproductssold" Type="Int32" Nullable="false" />
           <Property Name="Ratinginformation" Type="Int32" Nullable="false" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Sales_Customers" FromRole="Sales" ToRole="Customers" />
           <NavigationProperty Name="Products" Relationship="Self.fkProductID" FromRole="Sales" ToRole="Products" />
         </EntityType>
-        <Association Name="fk_ProductID">
-          <End Role="Products" Type="Self.Products" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
+        <Association Name="FK_Sales_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="ProductID" />
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
             </Principal>
-            <Dependent Role="Computers">
-              <PropertyRef Name="ProductID" />
+            <Dependent Role="Sales">
+              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -174,14 +149,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SouvenirShopEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Computers" EntityType="Self.Computers" />
+        <EntityContainer Name="SouvenirShopEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customers" />
           <EntitySet Name="Products" EntityType="Self.Products" />
           <EntitySet Name="Sales" EntityType="Self.Sales" />
-          <AssociationSet Name="fk_ProductID" Association="Self.fk_ProductID">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Computers" EntitySet="Computers" />
+          <AssociationSet Name="FK_Sales_Customers" Association="Self.FK_Sales_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
           <AssociationSet Name="fkProductID" Association="Self.fkProductID">
             <End Role="Products" EntitySet="Products" />
@@ -193,20 +167,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SouvenirShopModelStoreContainer" CdmEntityContainer="SouvenirShopEntities1">
-          <EntitySetMapping Name="Computers">
-            <EntityTypeMapping TypeName="SouvenirShopModel.Computers">
-              <MappingFragment StoreEntitySet="Computers">
-                <ScalarProperty Name="ComputerID" ColumnName="ComputerID" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="RamCapacity" ColumnName="RamCapacity" />
-                <ScalarProperty Name="ProcessorTechnology" ColumnName="ProcessorTechnology" />
-                <ScalarProperty Name="Monitor_Size" ColumnName="Monitor_Size" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="SouvenirShopModelStoreContainer" CdmEntityContainer="SouvenirShopEntities3">
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="SouvenirShopModel.Customers">
               <MappingFragment StoreEntitySet="Customers">
@@ -228,6 +189,8 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
                 <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

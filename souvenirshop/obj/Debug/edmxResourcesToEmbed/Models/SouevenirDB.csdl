@@ -1,17 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SouvenirShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Computers">
-    <Key>
-      <PropertyRef Name="ComputerID" />
-    </Key>
-    <Property Name="ComputerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="RamCapacity" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ProcessorTechnology" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Monitor_Size" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ProductID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Products" Relationship="Self.fk_ProductID" FromRole="Computers" ToRole="Products" />
-  </EntityType>
   <EntityType Name="Customers">
     <Key>
       <PropertyRef Name="CustomerID" />
@@ -23,16 +11,6 @@
     <Property Name="IsLogin" Type="Boolean" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Customers" FromRole="Customers" ToRole="Sales" />
-  </EntityType>
-  <EntityType Name="MobilePhones">
-    <Key>
-      <PropertyRef Name="MobilePhoneID" />
-    </Key>
-    <Property Name="MobilePhoneID" Type="Int32" Nullable="false" />
-    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="RamCapacity" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ProductID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Products" Relationship="Self.fk_ProductIdd" FromRole="MobilePhones" ToRole="Products" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -46,8 +24,6 @@
     <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Computers" Relationship="Self.fk_ProductID" FromRole="Products" ToRole="Computers" />
-    <NavigationProperty Name="MobilePhones" Relationship="Self.fk_ProductIdd" FromRole="Products" ToRole="MobilePhones" />
     <NavigationProperty Name="Sales" Relationship="Self.fkProductID" FromRole="Products" ToRole="Sales" />
   </EntityType>
   <EntityType Name="Sales">
@@ -63,20 +39,6 @@
     <NavigationProperty Name="Customers" Relationship="Self.FK_Sales_Customers" FromRole="Sales" ToRole="Customers" />
     <NavigationProperty Name="Products" Relationship="Self.fkProductID" FromRole="Sales" ToRole="Products" />
   </EntityType>
-  <Association Name="fk_ProductID">
-    <End Role="Products" Type="Self.Products" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="ProductID" />
-      </Principal>
-      <Dependent Role="Computers">
-        <PropertyRef Name="ProductID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Sales_Customers">
     <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
     <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
@@ -86,18 +48,6 @@
       </Principal>
       <Dependent Role="Sales">
         <PropertyRef Name="CustomerID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_ProductIdd">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="MobilePhones" Type="Self.MobilePhones" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="ProductID" />
-      </Principal>
-      <Dependent Role="MobilePhones">
-        <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -115,23 +65,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SouvenirShopEntities2" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Computers" EntityType="Self.Computers" />
+  <EntityContainer Name="SouvenirShopEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Customers" EntityType="Self.Customers" />
-    <EntitySet Name="MobilePhones" EntityType="Self.MobilePhones" />
     <EntitySet Name="Products" EntityType="Self.Products" />
     <EntitySet Name="Sales" EntityType="Self.Sales" />
-    <AssociationSet Name="fk_ProductID" Association="Self.fk_ProductID">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="Computers" EntitySet="Computers" />
-    </AssociationSet>
     <AssociationSet Name="FK_Sales_Customers" Association="Self.FK_Sales_Customers">
       <End Role="Customers" EntitySet="Customers" />
       <End Role="Sales" EntitySet="Sales" />
-    </AssociationSet>
-    <AssociationSet Name="fk_ProductIdd" Association="Self.fk_ProductIdd">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="MobilePhones" EntitySet="MobilePhones" />
     </AssociationSet>
     <AssociationSet Name="fkProductID" Association="Self.fkProductID">
       <End Role="Products" EntitySet="Products" />

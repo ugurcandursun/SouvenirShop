@@ -13,10 +13,10 @@ namespace souvenirshop.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SouvenirShopEntities1 : DbContext
+    public partial class SouvenirShopEntities3 : DbContext
     {
-        public SouvenirShopEntities1()
-            : base("name=SouvenirShopEntities1")
+        public SouvenirShopEntities3()
+            : base("name=SouvenirShopEntities3")
         {
         }
     
@@ -25,7 +25,6 @@ namespace souvenirshop.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Computers> Computers { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Sales> Sales { get; set; }

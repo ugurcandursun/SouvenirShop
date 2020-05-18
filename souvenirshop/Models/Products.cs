@@ -17,7 +17,6 @@ namespace souvenirshop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Products()
         {
-            this.Computers = new HashSet<Computers>();
             this.Sales = new HashSet<Sales>();
         }
     
@@ -27,9 +26,9 @@ namespace souvenirshop.Models
         public string Type { get; set; }
         public string ImageURL { get; set; }
         public string ProductDescription { get; set; }
+        public string Color { get; set; }
+        public string Gender { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Computers> Computers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sales> Sales { get; set; }
     }
