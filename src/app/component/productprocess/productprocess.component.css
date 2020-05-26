@@ -1,0 +1,21 @@
+.form-box h2 {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: plum;
+}
+.form-box h2 span {
+    font-weight: lighter;
+}
+.control{
+    text-align: center;
+}
+.button{
+    border-radius: 2px;
+    background-color:plum;
+    color:white;
+    padding: 10px 68px;
+    margin-left: 213px;
+    border: none;
+    cursor: pointer;
+  }
