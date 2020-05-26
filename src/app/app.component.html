@@ -15,7 +15,7 @@
         
         
           <div class="row">
-            
+            <a href="/admin-product">Admin</a>
             <a *ngIf="!deneme" class="active" href="/login"><i class="fas fa-user"></i> Login</a>
             <a *ngIf="deneme "class="active" href="#" (click)="logout()" ><i class="fas fa-user"></i> Logout</a>
             <a *ngIf="isBasketHaveProduct" class="active" href="/basket"><i class="fas fa-shopping-basket"></i> Basket({{basketLength}})</a>
