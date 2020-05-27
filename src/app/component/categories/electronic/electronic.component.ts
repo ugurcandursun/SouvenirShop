@@ -1,6 +1,7 @@
 import { Component, OnInit, DebugElement } from "@angular/core";
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+import { element } from 'protractor';
 
 @Component({
   selector: "app-electronic",
@@ -34,8 +35,11 @@ export class ElectronicComponent implements OnInit {
       .then((element) => {
         debugger;
         this.products = element;
-        this.filterProducts = element;
+        this.products=this.products.filter(d=>d.Type==="Electronic");
+        this.filterProducts=this.products;
       });
+
+      
   }
 
   clickButton($event,product:any) {
