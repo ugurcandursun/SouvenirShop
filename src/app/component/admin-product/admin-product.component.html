@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="main_content">
-        <div class="header">  Welcome to admin page!
+        <div class="header">  Welcome to product page!
             <button class="button-insert" (click)="clickInsert($event,item)">Insert new product</button>
          </div>  
 
@@ -36,8 +36,8 @@
                     <span *ngIf="i<item.AverageCustomerRating" class="fa fa-star checked"></span>
                     <span *ngIf="i>=item.AverageCustomerRating" class="fa fa-star unchecked"></span>
                 </div></td>
-                <td><button class="button" (click)="clickUpdate($event,item)">Update</button></td>
-                <td><button class="button" (click)="clickDelete($event,item)">Delete</button></td>
+                <td><button class="button" (click)="clickUpdate($event,item.ProductID)" href="/admin-product">Update</button></td>
+                <td><button class="button" (click)="clickDelete($event,item)" href="/admin-product">Delete</button></td>
             </tr>
     </table>
 
