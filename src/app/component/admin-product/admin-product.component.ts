@@ -10,7 +10,7 @@ import { HttpClient } from "@angular/common/http";
 export class AdminProductComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
   products: any = [];
- 
+  productID
   ngOnInit(): void {
     this.http
       .get("http://localhost:57367/api/product")
@@ -26,10 +26,12 @@ export class AdminProductComponent implements OnInit {
    this.router.navigate(["/productprocess"]);
   }
 //update
-clickUpdate($event,product:any) {
-    localStorage.setItem('productID',product.ProductID);
+clickUpdate($event,pID:any) {
+    this.productID=pID;
+    localStorage.setItem("productID",this.productID);
     this.router.navigate(["/productprocess"]);
  }
+ 
 //delete
 clickDelete($event,product:any) {
   
