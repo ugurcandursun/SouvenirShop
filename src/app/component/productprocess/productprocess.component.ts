@@ -1,16 +1,15 @@
 import { Component, OnInit, DebugElement} from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { threadId } from 'worker_threads';
-
+import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-productprocess',
   templateUrl: './productprocess.component.html',
   styleUrls: ['./productprocess.component.css']
 })
 export class ProductprocessComponent implements OnInit {
-  productID;
+  
   product=
-  { pID: 10, 
+  { 
     averageCustomerRating: 3,
     ProductDescription: '',
     price: null,
@@ -18,12 +17,19 @@ export class ProductprocessComponent implements OnInit {
     imageURL: 'assets/pen.jpg',
     color: '',
     gender: ''}
-    
-  constructor(private http: HttpClient) {}
- 
+  
+    productID;
+    constructor(private http: HttpClient,
+      private router: Router,
+      private route: ActivatedRoute) {
+        if(localStorage.getItem("productID"))
+        {
+          this.productID=localStorage.getItem("productID");
+        } 
+      }
  
   ngOnInit() {
-    this.productID=localStorage.getItem('productID');
+    
     this.http.get('http://localhost:57367/api/product')
     .toPromise()
     .then((id) => {
@@ -44,17 +50,18 @@ export class ProductprocessComponent implements OnInit {
       .then((element) => {
         debugger;
       });
+      this.router.navigate(["/admin-product"]);
      
     }
-    updateDb(){
+    updateDb(product:any){
       debugger;
-      this.http.put("http://localhost:57367/api/product/"+this.productID,this.product)
+      this.http.put("http://localhost:57367/api/product/"+this.productID,product)
       .toPromise()
       .then((element) => {
-        this.product.pID=this.productID;
+              
         debugger;
       });
-     
+      this.router.navigate(["/admin-product"]);
     }
     
    
