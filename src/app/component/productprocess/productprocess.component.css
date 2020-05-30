@@ -10,12 +10,21 @@
 .control{
     text-align: center;
 }
-.button{
+.buttonAdd{
     border-radius: 2px;
     background-color:plum;
     color:white;
-    padding: 10px 68px;
-    margin-left: 213px;
+    padding: 5px 70px;
+    margin-left: 30px;
     border: none;
-    cursor: pointer;
+    text-align: center;
+  }
+  .buttonUpdate{
+    border-radius: 2px;
+    background-color:plum;
+    color:white;
+    padding: 5px 65px;
+    margin-left: 480px;
+    border: none;
+    text-align: center;
   }
