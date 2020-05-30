@@ -28,6 +28,8 @@ import { BasketComponent } from './component/basket/basket.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { AdminProductComponent } from './component/admin-product/admin-product.component';
 import { ProductprocessComponent } from './component/productprocess/productprocess.component';
+import { AdminCustomerComponent } from './component/admin-customer/admin-customer.component';
+import { AdminComponent } from './component/admin/admin.component';
 
 @NgModule({
    declarations: [
@@ -45,7 +47,14 @@ import { ProductprocessComponent } from './component/productprocess/productproce
       WatchesAccessoriesComponent,
       HomeComponent,  
       ProductinfoComponent,       
-      RegisterComponent, LoginComponent, BasketComponent, PaymentComponent, AdminProductComponent, ProductprocessComponent,
+      RegisterComponent,
+      LoginComponent, 
+      BasketComponent, 
+      PaymentComponent, 
+      AdminProductComponent, 
+      ProductprocessComponent, 
+      AdminCustomerComponent, 
+      AdminComponent, 
       
    ],
    imports: [
