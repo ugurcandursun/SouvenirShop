@@ -21,6 +21,8 @@ import { BasketComponent } from './component/basket/basket.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { AdminProductComponent } from  './component/admin-product/admin-product.component';
 import { ProductprocessComponent } from './component/productprocess/productprocess.component';
+import { AdminCustomerComponent } from './component/admin-customer/admin-customer.component';
+import { AdminComponent } from './component/admin/admin.component';
 const APP_ROUTES: Routes = [
     
     {path: 'create', component: EmployeeComponent },
@@ -43,8 +45,8 @@ const APP_ROUTES: Routes = [
     {path:"payment",component:PaymentComponent},
     {path:"admin-product", component:AdminProductComponent},
     {path:"productprocess", component:ProductprocessComponent},
-    
-  
+    {path: "admin-customer", component:AdminCustomerComponent},
+    {path: "admin", component:AdminComponent},
    
     
 ];
