@@ -13,10 +13,10 @@ export class AdminCustomerComponent implements OnInit {
  
   ngOnInit(): void {
     this.http
-      .get("http://localhost:57367/api/customer")
+      .get("http://localhost:57367/api/user")
       .toPromise()
       .then((element) => {
-        debugger;
+      
         this.customers = element;
       });
     
@@ -33,10 +33,10 @@ clickUpdate($event,customer:any) {
 //delete
 clickDelete($event,customer:any) {
   
-  this.http.delete("http://localhost:57367/api/customer/"+customer.CustomerID)
+  this.http.delete("http://localhost:57367/api/user/"+customer.CustomerID)
   .toPromise()
       .then((element) => {
-        debugger;
+        
         this.router.navigate(["admin-customer"]);
       });
   

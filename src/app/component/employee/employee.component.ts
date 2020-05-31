@@ -26,7 +26,7 @@ customer=
   constructor(private httpClinet: HttpClient) {   }
 
   ngOnInit() {
-    this.httpClinet.get('http://localhost:57367/api/customers')
+    this.httpClinet.get('http://localhost:57367/api/user')
     .subscribe(
       (respose) => {
       

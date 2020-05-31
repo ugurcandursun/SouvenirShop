@@ -33,6 +33,16 @@ export class AppComponent {
   ) {
     if (localStorage.getItem("dataSource")) {
       this.deneme = true;
+      var Id:number=+localStorage.getItem("dataSource");
+      this.httpClinet.get(this.rootURL + "/user/"+Id).subscribe(d=>{
+      debugger;
+      if(d["isAdmin"]==true)
+      {
+        this.isAdmin=true;
+      }
+      
+        
+      })
     }
     if(localStorage.getItem("basketproductlength"))
     {
@@ -43,16 +53,25 @@ export class AppComponent {
   }
   isBasketHaveProduct:boolean=false;
   basketLength;
+  isAdmin:boolean=false;
   deneme: boolean = false;
   ngOnInit() {
-    this.httpClinet.get(this.rootURL + "/customer").subscribe((response) => {
+    this.httpClinet.get(this.rootURL + "/user").subscribe((response) => {
       this.allCustomer = response;
     });
   }
   logout(){
-    debugger;
-    localStorage.removeItem("dataSource");
     this.deneme=false;
-    this.router.navigate(['/home']);
+    var Id:number=+localStorage.getItem("dataSource");
+    this.httpClinet.get(this.rootURL + "/user/"+Id).subscribe(d=>{
+      
+      var element=d;
+      this.httpClinet.put(this.rootURL + "/user/"+Id,element).subscribe((response) => {
+        localStorage.removeItem("dataSource");
+      });
+      
+    })
+
+    //this.router.navigate(['/home']);
   }
 }

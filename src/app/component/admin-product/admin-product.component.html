@@ -8,9 +8,20 @@
 <body>
     <div class="main_content">
         <div class="header">  Welcome to product page!
+     
             <button class="button-insert" (click)="clickInsert($event,item)">Insert new product</button>
          </div>  
+         <label for="cars">Select Category Types: </label>
 
+         <select id="cars"(change)="onChange($event.target.value)">
+           <option value="Electronic" selected >ELECTRONIC</option>
+           <option value="HomeLife">HOME&LIFE</option>
+           <option value="Cosmetics">COSMETIC</option>
+           <option value="ShoesBag">ShoesBag</option>
+           <option value="Accessories">WATCHES & ACCESSORIES</option>
+           
+
+         </select>
         <table>
             <tr>
                 <th><div class="col-7 box-shadow">Product</div></th>
@@ -36,7 +47,7 @@
                     <span *ngIf="i<item.AverageCustomerRating" class="fa fa-star checked"></span>
                     <span *ngIf="i>=item.AverageCustomerRating" class="fa fa-star unchecked"></span>
                 </div></td>
-                <td><button class="button" (click)="clickUpdate($event,item.ProductID)" href="/admin-product">Update</button></td>
+                <td><button class="button" (click)="clickUpdate($event,item)" href="/admin-product">Update</button></td>
                 <td><button class="button" (click)="clickDelete($event,item)" href="/admin-product">Delete</button></td>
             </tr>
     </table>

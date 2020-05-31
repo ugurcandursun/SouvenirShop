@@ -18,25 +18,20 @@ export class ProductprocessComponent implements OnInit {
     color: '',
     gender: ''}
   
-    productID;
+    updateProduct;
     constructor(private http: HttpClient,
       private router: Router,
       private route: ActivatedRoute) {
-        if(localStorage.getItem("productID"))
+        if(localStorage.getItem("updateProduct"))
         {
-          this.productID=localStorage.getItem("productID");
+          debugger;
+          this.updateProduct=localStorage.getItem("updateProduct");
         } 
       }
  
   ngOnInit() {
     
-    this.http.get('http://localhost:57367/api/product')
-    .toPromise()
-    .then((id) => {
-        debugger;
-        this.productID = id;
-      }
-    );
+  
     
 
     console.log(this.product);
@@ -53,16 +48,16 @@ export class ProductprocessComponent implements OnInit {
       this.router.navigate(["/admin-product"]);
      
     }
-    updateDb(product:any){
-      debugger;
-      this.http.put("http://localhost:57367/api/product/"+this.productID,product)
-      .toPromise()
-      .then((element) => {
+    // updateDb(product:any){
+    //   debugger;
+    //   this.http.put("http://localhost:57367/api/product/"+this.productID,product)
+    //   .toPromise()
+    //   .then((element) => {
               
-        debugger;
-      });
-      this.router.navigate(["/admin-product"]);
-    }
+    //     debugger;
+    //   });
+    //   this.router.navigate(["/admin-product"]);
+    // }
     
    
    

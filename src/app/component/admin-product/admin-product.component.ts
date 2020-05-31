@@ -10,14 +10,17 @@ import { HttpClient } from "@angular/common/http";
 export class AdminProductComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
   products: any = [];
-  productID
+  allproducts: any = [];
+  productID;
+  selectedValue="";
   ngOnInit(): void {
     this.http
       .get("http://localhost:57367/api/product")
       .toPromise()
       .then((element) => {
-        debugger;
-        this.products = element;
+       
+        this.allproducts = element;
+        this.products=this.allproducts.filter(d=>d.Type==="Electronic")
       });
     
   }
@@ -26,9 +29,9 @@ export class AdminProductComponent implements OnInit {
    this.router.navigate(["/productprocess"]);
   }
 //update
-clickUpdate($event,pID:any) {
-    this.productID=pID;
-    localStorage.setItem("productID",this.productID);
+clickUpdate($event,product:any) {
+
+    localStorage.setItem("updateProduct",product);
     this.router.navigate(["/productprocess"]);
  }
  
@@ -38,10 +41,15 @@ clickDelete($event,product:any) {
   this.http.delete("http://localhost:57367/api/product/"+product.ProductID)
   .toPromise()
       .then((element) => {
-        debugger;
+        
         this.router.navigate(["admin-product"]);
       });
   
+}
+onChange(deviceValue:any) {
+  this.products=this.allproducts.filter(d=>d.Type===deviceValue)
+
+
 }
 
 

@@ -14,17 +14,17 @@ export class AdminComponent implements OnInit {
   products: any = [];
   ngOnInit(): void {
     this.http
-      .get("http://localhost:57367/api/customer")
+      .get("http://localhost:57367/api/user")
       .toPromise()
       .then((element) => {
-        debugger;
+        
         this.customers = element;
       });
       this.http
       .get("http://localhost:57367/api/product")
       .toPromise()
       .then((element) => {
-        debugger;
+        
         this.products = element;
       });
       

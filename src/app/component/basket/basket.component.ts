@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-basket",
@@ -7,7 +8,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./basket.component.css"],
 })
 export class BasketComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router,private toastr:ToastrService) {}
   startDate: Date = new Date();
   endDate: Date = new Date();
   basketProducts: any = [];
@@ -37,8 +38,14 @@ export class BasketComponent implements OnInit {
     window.location.reload(); 
   }
   goPayment(){
-    debugger;
-    localStorage.setItem('grandTotal',this.totalAmount.toString());
-    this.router.navigateByUrl("/payment");
+    if(localStorage.getItem("dataSource"))
+    {
+      localStorage.setItem('grandTotal',this.totalAmount.toString());
+      this.router.navigateByUrl("/payment");
+    }
+    else{
+    this.toastr.error("Plase,firstly login !","Errror");
+    }
+    
   }
 }
