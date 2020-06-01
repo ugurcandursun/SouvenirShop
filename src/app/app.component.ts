@@ -61,6 +61,7 @@ export class AppComponent {
     });
   }
   logout(){
+    debugger;
     this.deneme=false;
     var Id:number=+localStorage.getItem("dataSource");
     this.httpClinet.get(this.rootURL + "/user/"+Id).subscribe(d=>{
