@@ -61,6 +61,19 @@
                     </div></td>
                 
                 </tr>
+             <tr>
+                <th><div class="col-7 box-shadow">Date of Sale</div></th>
+                <th><div class="col-7 box-shadow">Buyer</div></th>
+                <th><div class="col-7 box-shadow">How many</div></th>
+                <th><div class="col-7 box-shadow">Rating Information</div></th>
+            </tr>
+            <tr *ngFor="let item of sales">
+                <td> <div class="element"> {{item.DateofSale}} </div> </td>
+                <td> <div class="element"> {{item.UserID}} </div> </td>
+                <td> <div class="element"> {{item.Howmanyproductssold}}</div> </td>
+                <td> <div class="element"> {{item.RatingInformation}}</div> </td>
+                
+                </tr>
     
     </table>
 
