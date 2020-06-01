@@ -31,7 +31,8 @@ export class AdminProductComponent implements OnInit {
 //update
 clickUpdate($event,product:any) {
 
-    localStorage.setItem("updateProduct",product);
+  localStorage.setItem('updateProduct', JSON.stringify(product));
+    
     this.router.navigate(["/productprocess"]);
  }
  
