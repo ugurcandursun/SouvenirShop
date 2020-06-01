@@ -22,7 +22,9 @@ import { PaymentComponent } from './component/payment/payment.component';
 import { AdminProductComponent } from  './component/admin-product/admin-product.component';
 import { ProductprocessComponent } from './component/productprocess/productprocess.component';
 import { AdminCustomerComponent } from './component/admin-customer/admin-customer.component';
+import { AdminSalesComponent } from './component/admin-sales/admin-sales.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { CustomerprocessComponent } from './component/customerprocess/customerprocess.component';
 const APP_ROUTES: Routes = [
     
     {path: 'create', component: EmployeeComponent },
@@ -45,10 +47,10 @@ const APP_ROUTES: Routes = [
     {path:"payment",component:PaymentComponent},
     {path:"admin-product", component:AdminProductComponent},
     {path:"productprocess", component:ProductprocessComponent},
-    {path: "admin-customer", component:AdminCustomerComponent},
-    {path: "admin", component:AdminComponent},
-   
-    
+    {path:"admin-customer", component:AdminCustomerComponent},
+    {path:"admin", component:AdminComponent},
+    {path:"customerprocess" ,component:CustomerprocessComponent},
+    {path:"admin-sales" , component:AdminSalesComponent},
 ];
 
 @NgModule({
