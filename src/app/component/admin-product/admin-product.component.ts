@@ -25,7 +25,7 @@ export class AdminProductComponent implements OnInit {
     
   }
   //insert
-  clickInsert($event,product:any) {
+  clickInsert() {
    this.router.navigate(["/productprocess"]);
   }
 //update
