@@ -27,9 +27,10 @@ export class AdminCustomerComponent implements OnInit {
   }
 //update
 clickUpdate($event,customer:any) {
-    localStorage.setItem('customerID',customer.CustomerID);
-  //  this.router.navigate(["/"]);
+  localStorage.setItem('updateCustomer', JSON.stringify(customer));
+    this.router.navigate(["/customerprocess"]);
  }
+ 
 //delete
 clickDelete($event,customer:any) {
   
