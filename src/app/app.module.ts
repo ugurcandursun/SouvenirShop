@@ -30,6 +30,8 @@ import { AdminProductComponent } from './component/admin-product/admin-product.c
 import { ProductprocessComponent } from './component/productprocess/productprocess.component';
 import { AdminCustomerComponent } from './component/admin-customer/admin-customer.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { CustomerprocessComponent } from './component/customerprocess/customerprocess.component';
+import { AdminSalesComponent } from './component/admin-sales/admin-sales.component';
 
 @NgModule({
    declarations: [
@@ -54,7 +56,7 @@ import { AdminComponent } from './component/admin/admin.component';
       AdminProductComponent, 
       ProductprocessComponent, 
       AdminCustomerComponent, 
-      AdminComponent, 
+      AdminComponent, CustomerprocessComponent, AdminSalesComponent, 
       
    ],
    imports: [
