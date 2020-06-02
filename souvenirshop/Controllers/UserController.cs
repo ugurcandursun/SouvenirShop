@@ -12,44 +12,49 @@ using souvenirshop.Models;
 
 namespace souvenirshop.Controllers
 {
-    public class CustomerController : ApiController
+    public class UserController : ApiController
     {
-        private SouvenirShopEntities3 db = new SouvenirShopEntities3();
+        private SouvenirShopEntities5 db = new SouvenirShopEntities5();
 
-        // GET: api/Customer
-        public IQueryable<Customers> GetCustomers()
+        // GET: api/User
+        public IQueryable<Users> GetUsers()
         {
-            return db.Customers;
+            return db.Users;
         }
 
-        // GET: api/Customer/5
-        [ResponseType(typeof(Customers))]
-        public IHttpActionResult GetCustomers(int id)
+        // GET: api/User/5
+        [ResponseType(typeof(Users))]
+        public IHttpActionResult GetUsers(int id)
         {
-            Customers customers = db.Customers.Find(id);
-            if (customers == null)
+            Users users = db.Users.Find(id);
+            if (users == null)
             {
                 return NotFound();
             }
 
-            return Ok(customers);
+            return Ok(users);
         }
 
-        // PUT: api/Customer/5
+        // PUT: api/User/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCustomers(int id, Customers customers)
+        public IHttpActionResult PutUsers(int id, Users users)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != customers.CustomerID)
+            if (id != users.UserID)
             {
                 return BadRequest();
             }
 
-            db.Entry(customers).State = EntityState.Modified;
+            Users company = new Users();
+            /*Satırımızdaki verilerin tamamını çekelim.*/
+            company = db.Users.Find(users.UserID);
+            company.IsLogin = !company.IsLogin;
+            
+            db.Entry(company).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +62,7 @@ namespace souvenirshop.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomersExists(id))
+                if (!UsersExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +75,35 @@ namespace souvenirshop.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Customer
-        [ResponseType(typeof(Customers))]
-        public IHttpActionResult PostCustomers(Customers customers)
+        // POST: api/User
+        [ResponseType(typeof(Users))]
+        public IHttpActionResult PostUsers(Users users)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Customers.Add(customers);
+            db.Users.Add(users);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = customers.CustomerID }, customers);
+            return CreatedAtRoute("DefaultApi", new { id = users.UserID }, users);
         }
 
-        // DELETE: api/Customer/5
-        [ResponseType(typeof(Customers))]
-        public IHttpActionResult DeleteCustomers(int id)
+        // DELETE: api/User/5
+        [ResponseType(typeof(Users))]
+        public IHttpActionResult DeleteUsers(int id)
         {
-            Customers customers = db.Customers.Find(id);
-            if (customers == null)
+            Users users = db.Users.Find(id);
+            if (users == null)
             {
                 return NotFound();
             }
 
-            db.Customers.Remove(customers);
+            db.Users.Remove(users);
             db.SaveChanges();
 
-            return Ok(customers);
+            return Ok(users);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +115,9 @@ namespace souvenirshop.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CustomersExists(int id)
+        private bool UsersExists(int id)
         {
-            return db.Customers.Count(e => e.CustomerID == id) > 0;
+            return db.Users.Count(e => e.UserID == id) > 0;
         }
     }
 }

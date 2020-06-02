@@ -12,44 +12,44 @@ using souvenirshop.Models;
 
 namespace souvenirshop.Controllers
 {
-    public class ProductController : ApiController
+    public class SalesController : ApiController
     {
         private SouvenirShopEntities5 db = new SouvenirShopEntities5();
 
-        // GET: api/Product
-        public IQueryable<Products> GetProducts()
+        // GET: api/Sales
+        public IQueryable<Sales> GetSales()
         {
-            return db.Products;
+            return db.Sales;
         }
 
-        // GET: api/Product/5
-        [ResponseType(typeof(Products))]
-        public IHttpActionResult GetProducts(int id)
+        // GET: api/Sales/5
+        [ResponseType(typeof(Sales))]
+        public IHttpActionResult GetSales(int id)
         {
-            Products products = db.Products.Find(id);
-            if (products == null)
+            Sales sales = db.Sales.Find(id);
+            if (sales == null)
             {
                 return NotFound();
             }
 
-            return Ok(products);
+            return Ok(sales);
         }
 
-        // PUT: api/Product/5
+        // PUT: api/Sales/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProducts(int id, Products products)
+        public IHttpActionResult PutSales(int id, Sales sales)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != products.ProductID)
+            if (id != sales.SalesID)
             {
                 return BadRequest();
             }
 
-            db.Entry(products).State = EntityState.Modified;
+            db.Entry(sales).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace souvenirshop.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductsExists(id))
+                if (!SalesExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,50 @@ namespace souvenirshop.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Product
-        [ResponseType(typeof(Products))]
-        public IHttpActionResult PostProducts(Products products)
+        // POST: api/Sales
+        [ResponseType(typeof(Sales))]
+        public IHttpActionResult PostSales(Sales sales)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Products.Add(products);
-            db.SaveChanges();
+            db.Sales.Add(sales);
 
-            return CreatedAtRoute("DefaultApi", new { id = products.ProductID }, products);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (SalesExists(sales.SalesID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = sales.SalesID }, sales);
         }
 
-        // DELETE: api/Product/5
-        [ResponseType(typeof(Products))]
-        public IHttpActionResult DeleteProducts(int id)
+        // DELETE: api/Sales/5
+        [ResponseType(typeof(Sales))]
+        public IHttpActionResult DeleteSales(int id)
         {
-            Products products = db.Products.Find(id);
-            if (products == null)
+            Sales sales = db.Sales.Find(id);
+            if (sales == null)
             {
                 return NotFound();
             }
 
-            db.Products.Remove(products);
+            db.Sales.Remove(sales);
             db.SaveChanges();
 
-            return Ok(products);
+            return Ok(sales);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +125,9 @@ namespace souvenirshop.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProductsExists(int id)
+        private bool SalesExists(int id)
         {
-            return db.Products.Count(e => e.ProductID == id) > 0;
+            return db.Sales.Count(e => e.SalesID == id) > 0;
         }
     }
 }

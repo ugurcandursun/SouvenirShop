@@ -12,20 +12,21 @@ namespace souvenirshop.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customers
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customers()
+        public Users()
         {
             this.Sales = new HashSet<Sales>();
         }
     
-        public int CustomerID { get; set; }
+        public int UserID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email_Address { get; set; }
         public Nullable<bool> IsLogin { get; set; }
         public string Password { get; set; }
+        public Nullable<bool> isAdmin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sales> Sales { get; set; }

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SouvenirShopModelStoreContainer" CdmEntityContainer="SouvenirShopEntities5">
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="SouvenirShopModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="AverageCustomerRating" ColumnName="AverageCustomerRating" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales">
+      <EntityTypeMapping TypeName="SouvenirShopModel.Sales">
+        <MappingFragment StoreEntitySet="Sales">
+          <ScalarProperty Name="SalesID" ColumnName="SalesID" />
+          <ScalarProperty Name="DateofSale" ColumnName="DateofSale" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Howmanyproductssold" ColumnName="Howmanyproductssold" />
+          <ScalarProperty Name="Ratinginformation" ColumnName="Ratinginformation" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SouvenirShopModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+          <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="deleteProduct" FunctionName="SouvenirShopModel.Store.deleteProduct" />
+    <FunctionImportMapping FunctionImportName="deleteUser" FunctionName="SouvenirShopModel.Store.deleteUser" />
+    <FunctionImportMapping FunctionImportName="InsertProduct" FunctionName="SouvenirShopModel.Store.InsertProduct" />
+    <FunctionImportMapping FunctionImportName="InsertUser" FunctionName="SouvenirShopModel.Store.InsertUser" />
+    <FunctionImportMapping FunctionImportName="updateProduct" FunctionName="SouvenirShopModel.Store.updateProduct" />
+    <FunctionImportMapping FunctionImportName="ViewAllProducts" FunctionName="SouvenirShopModel.Store.ViewAllProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SouvenirShopModel.ViewAllProducts_Result">
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="AverageCustomerRating" ColumnName="AverageCustomerRating" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

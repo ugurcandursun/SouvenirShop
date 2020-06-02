@@ -10,18 +10,15 @@
 namespace souvenirshop.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Sales
+    public partial class ViewAllProducts_Result
     {
-        public int SalesID { get; set; }
-        public System.DateTime DateofSale { get; set; }
-        public int UserID { get; set; }
-        public int Howmanyproductssold { get; set; }
-        public int Ratinginformation { get; set; }
-        public int ProductID { get; set; }
-    
-        public virtual Products Products { get; set; }
-        public virtual Users Users { get; set; }
+        public string ImageURL { get; set; }
+        public string ProductDescription { get; set; }
+        public string Color { get; set; }
+        public string Gender { get; set; }
+        public string Type { get; set; }
+        public int Price { get; set; }
+        public int AverageCustomerRating { get; set; }
     }
 }
