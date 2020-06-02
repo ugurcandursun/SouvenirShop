@@ -64,7 +64,7 @@
   
     </div> 
     <div class="col-9" >
-      <div class="row" >
+      <div  *ngIf="!isNotFound" class="row" >
         <div class="col-md" *ngFor="let item of filterProducts">
           <button class="bestproduct" (click)="clickButton($event,item)">          
           <div class="card mb-4 box-shadow">
@@ -84,6 +84,11 @@
           </div>
           </button>
         </div>
+  
+     
+      </div>
+      <div  *ngIf="isNotFound" class="row" >
+        <h2 style="color: red;">{{notFoundResult}}</h2>
   
      
       </div>

@@ -71,6 +71,7 @@ export class PaymentComponent implements OnInit {
       this.toastr.success("Your order has been successfully received","Successful");
       localStorage.removeItem("productinBasket");
       localStorage.removeItem("basketproductlength");
+      window.location.reload();
       this.router.navigate(["/home"]);
      
       

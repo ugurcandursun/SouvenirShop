@@ -57,10 +57,14 @@ export class AppComponent {
   basketLength;
   isAdmin:boolean=false;
   deneme: boolean = false;
+  exchangeDolar;
   ngOnInit() {
     this.authencationService.getAllUser().subscribe(data=>{
       this.allCustomer = data;
     });
+    this.httpClinet.get("http://localhost:57367/api/currency").subscribe(data=>{
+      this.exchangeDolar=data;
+    })
   }
   logout(){
     debugger;

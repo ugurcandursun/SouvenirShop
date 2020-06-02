@@ -27,6 +27,8 @@ export class CosmeticComponent implements OnInit {
   isSecondRange: boolean = false;
   isThirdRange: boolean = false;
   isFourthRange: boolean = false;
+  notFoundResult:string;
+  isNotFound=false;
   amount: "500";
   ngOnInit(): void {
     this.http
@@ -107,8 +109,9 @@ export class CosmeticComponent implements OnInit {
       if (this.color != "") {
         if (this.maxPrice != 10000000) {
           this.filterProducts = this.products.filter(
+            
             (product) =>
-              product.Gender === this.gender &&product.Gender === "Unisex" &&
+              product.Gender === this.gender&&
               product.Color === this.color &&
               product.Price >= this.minPrice &&
               product.Price <= this.maxPrice
@@ -117,31 +120,33 @@ export class CosmeticComponent implements OnInit {
         else{
           this.filterProducts = this.products.filter(
             (product) =>
-              product.Gender === this.gender &&product.Gender === "Unisex"&&
+              product.Gender === this.gender&&
               product.Color === this.color
              
           );
         }
       } else {
-        if (this.maxPrice != 10000000) {
+        if (this.maxPrice != 1000000) {
+          debugger;
           this.filterProducts = this.products.filter(
             (product) =>
-              product.Gender === this.gender &&product.Gender === "Unisex"&&
+              product.Gender === this.gender&&
               product.Price >= this.minPrice &&
               product.Price <= this.maxPrice
           );
         }
         else
-        {
+        {debugger;
           this.filterProducts = this.products.filter(
-            (product) => product.Gender === this.gender&&product.Gender === "Unisex"
+            (product) => product.Gender === this.gender
           );
+          console.log(this.gender);
         }
         
       }
     } else {
       if (this.color != "") {
-        if (this.maxPrice != 10000000) {
+        if (this.maxPrice != 1000000) {
           this.filterProducts = this.products.filter(
             (product) =>
               product.Color === this.color &&
@@ -156,7 +161,7 @@ export class CosmeticComponent implements OnInit {
         }
         
       } else {
-        if (this.maxPrice != 10000000) {
+        if (this.maxPrice != 1000000) {
           debugger;
           this.filterProducts = this.products.filter(
             (product) =>
@@ -169,6 +174,18 @@ export class CosmeticComponent implements OnInit {
         }
         
       }
+    }
+
+
+    
+
+    if(this.filterProducts.length==0)
+    {
+      this.notFoundResult="Is not found product according to your search filters !"
+      this.isNotFound=true;
+    }
+    else{
+      this.isNotFound=false;
     }
   }
 }

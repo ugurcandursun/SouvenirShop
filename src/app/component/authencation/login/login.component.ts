@@ -73,7 +73,8 @@ export class LoginComponent implements OnInit {
 
               localStorage.setItem("dataSource", element.UserID);
               localStorage.setItem("data", "1");
-              this.router.navigate(["/electronic"]);
+              
+              this.router.navigate(["/home"]);
               
             } else {
               this.errorMessage = "Please check the information entered";
