@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { AuthencationService } from './component/authencation/authencation.service';
 
 @Component({
   selector: "app-root",
@@ -29,12 +30,13 @@ export class AppComponent {
     private httpClinet: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authencationService:AuthencationService
   ) {
     if (localStorage.getItem("dataSource")) {
       this.deneme = true;
       var Id:number=+localStorage.getItem("dataSource");
-      this.httpClinet.get(this.rootURL + "/user/"+Id).subscribe(d=>{
+      this.authencationService.getUser(Id).subscribe(d=>{
       debugger;
       if(d["isAdmin"]==true)
       {
@@ -56,22 +58,17 @@ export class AppComponent {
   isAdmin:boolean=false;
   deneme: boolean = false;
   ngOnInit() {
-    this.httpClinet.get(this.rootURL + "/user").subscribe((response) => {
-      this.allCustomer = response;
+    this.authencationService.getAllUser().subscribe(data=>{
+      this.allCustomer = data;
     });
   }
   logout(){
-    this.deneme=false;
+    debugger;
     var Id:number=+localStorage.getItem("dataSource");
-    this.httpClinet.get(this.rootURL + "/user/"+Id).subscribe(d=>{
-      
-      var element=d;
-      this.httpClinet.put(this.rootURL + "/user/"+Id,element).subscribe((response) => {
-        localStorage.removeItem("dataSource");
-      });
-      
-    })
-
+    this.authencationService.logout(Id);
+    this.deneme=false;
+   
+    localStorage.removeItem("dataSource");
     //this.router.navigate(['/home']);
   }
 }

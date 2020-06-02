@@ -43,7 +43,7 @@ clickDelete($event,product:any) {
   .toPromise()
       .then((element) => {
         
-        this.router.navigate(["admin-product"]);
+        this.router.navigate(["admin"]);
       });
   
 }

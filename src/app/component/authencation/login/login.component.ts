@@ -5,6 +5,8 @@ import { ToastrService } from "ngx-toastr";
 import * as CryptoJS from "crypto-js";
 import { dependenciesFromGlobalMetadata } from "@angular/compiler/src/render3/r3_factory";
 import { forkJoin } from 'rxjs';
+import { AuthencationService } from '../authencation.service';
+import { EncryptionService } from '../encryption.service';
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -30,38 +32,19 @@ export class LoginComponent implements OnInit {
   constructor(
     private httpClinet: HttpClient,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authencationService:AuthencationService,
+    private encryptionService:EncryptionService
   ) {}
-  secretKey = "YourSecretKeyForEncryption&Descryption";
+ 
   ngOnInit() {
-    this.httpClinet.get(this.rootURL + "/user").subscribe((response) => {
-      this.allCustomer = response;
+    this.authencationService.getAllUser().subscribe(data=>{
+      this.allCustomer = data;
     });
    
-    var a = this.encryptData("merhaba");
-    var b = this.decryptData(a);
+   
   }
-  encryptData(data) {
-    try {
-      return CryptoJS.AES.encrypt(
-        JSON.stringify(data),
-        this.secretKey
-      ).toString();
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  decryptData(data) {
-    try {
-      const bytes = CryptoJS.AES.decrypt(data, this.secretKey);
-      if (bytes.toString()) {
-        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      }
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  
   savecustomer() {
     if (this.customer.Password == "" || this.customer.Email_Address == "") {
       this.toastr.error("Please fill in the blank fields", "Error!");
@@ -71,25 +54,26 @@ export class LoginComponent implements OnInit {
         if (!this.flag) {
           
           if (element.Email_Address === this.customer.Email_Address) {
-            element.Password = this.decryptData(element.Password);
+            element.Password = this.encryptionService.decryptData(element.Password);
             if (element.Password === this.customer.Password) {
               
              
               this.isLoginError = false;
-              element.Password=this.encryptData(this.customer.Password);          
+              element.Password=this.encryptionService.encryptData(this.customer.Password);          
               var flagg=false;
               console.log(this.customer);
-              this.httpClinet.put(this.rootURL + "/user/"+element.UserID,element).subscribe((response) => {
+              this.authencationService.login(element).subscribe((response) => {
               
                });
+               debugger;
               this.toastr.success(
-                this.customer.Name + " " + this.customer.Surname,
+                element.Name + " " + element.Surname,
                 "Welcome!"
               );
 
               localStorage.setItem("dataSource", element.UserID);
               localStorage.setItem("data", "1");
-              this.router.navigate(["/home"]);
+              this.router.navigate(["/electronic"]);
               
             } else {
               this.errorMessage = "Please check the information entered";

@@ -1,0 +1,69 @@
+
+<head>
+    <meta charset="UTF-8">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">  
+  </head>
+  <body>
+    <div><a href="/admin" class="previous">&laquo; Go Back Admin Panel</a></div> 
+    <div class="form-box"><h2>Customer Process</h2></div>
+    
+  
+    <form class="form-horizontal">
+  
+      
+      <div class="form-group">
+        <label class="col-sm-5 control-label">Name</label>
+        <div class="col-sm-2">
+          <input [(ngModel)]="customer.Name" class="form-control" name="type" type="text" value="" placeholder="Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">Surname</label>
+        <div class="col-sm-2">
+          <input [(ngModel)]="customer.Surname" class="form-control" name="description" type="text" value="" placeholder="Surname">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">Email</label>
+        <div class="col-sm-2">
+          <input [(ngModel)]="customer.Email_Address" class="form-control" name="color" type="text" value="" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">Password</label>
+        <div class="col-sm-2">
+          <input [(ngModel)]="customer.Password" class="form-control" name="gender" type="password" value="" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">IsAdmin</label>
+        <div class="col-sm-2">
+          <input [(ngModel)]="customer.isAdmin" class="form-control" name="ımage" type="text" value="" placeholder="False/True">
+        </div>
+        
+       
+        
+      </div>
+      <div class="form-group">
+        
+          <button  type="submit" class="buttonAdd" (click)="addDb()">Add</button>
+       
+       
+        
+      </div>
+      <div class="form-group" >
+        <div>
+          <label style="text-align: center;background-color: greenyellow;" class="col-sm-5 control-label">Fill in the fields in accordance with the above format. Your image file should be in the "assets /" folder.</label>
+  
+        </div>
+       
+        
+       
+        
+      </div>
+    </form>
+  
+  
+  </body>
+  
+  

@@ -12,63 +12,27 @@
             <div class="sidebar">
                 <h5>Managements</h5>
                     <ul>
-                        <li><a href="/admin-customer">Customers</a></li>
-                        <li><a href="/admin-product">Products</a></li>
-                        <li><a href="/admin">Sales</a></li>
+                        <li><a role="button" (click)="goCostomerAdminPage()">Customers</a></li>
+                        <li><a  role="button" (click)="goProductAdminPage()">Products</a></li>
+                        <li><a  role="button" (click)="goSalesAdminPage()">Sales</a></li>
+                       
                     </ul> 
             </div>
 
 
     <div class="main_content">
-        <div class="header">  Admin Page </div>  
-        <table>
-                <tr>
-                    <th><div class="col-3 box-shadow">Name</div></th>
-                    <th><div class="col-3 box-shadow">Surname</div></th>
-                    <th><div class="col-3 box-shadow">Email Address</div></th>
-
-                </tr>
-                
-                <tr *ngFor="let item of customers">
-                    <td> <div class="element"> {{item.Name}} </div> </td>
-                    <td> <div class="element"> {{item.Surname}} </div> </td>
-                    <td> <div class="element"> {{item.Email_Address}}</div> </td>
-    
-                </tr>
-                <tr>
-                    <th><div class="col-7 box-shadow">Product</div></th>
-                    <th><div class="col-7 box-shadow">Description</div></th>
-                    <th><div class="col-7 box-shadow">Color</div></th>
-                    <th><div class="col-7 box-shadow">Gender</div></th>
-                    <th><div class="col-7 box-shadow">Type</div></th>
-                    <th><div class="col-7 box-shadow">Price</div></th>
-                    <th><div class="col-7 box-shadow">Rating</div></th>
-                </tr>
-                <tr *ngFor="let item of products">
-                    <td>
-                        <div class="col-7 box-shadow">
-                            <img class="colseven"  src="{{item.ImageURL}}">
-                        </div>
-                    </td>
-                    <td> <div class="element"> {{item.ProductDescription}} </div> </td>
-                    <td> <div class="element"> {{item.Color}} </div> </td>
-                    <td> <div class="element"> {{item.Gender}}</div> </td>
-                    <td> <div class="element"> {{item.Type}} </div> </td>
-                    <td> <div class="element"> ${{item.Price}} </div> </td>
-                    <td class="element"><div *ngFor="let number of [0,1,2,3,4];let i = index" style="display: inline;">
-                        <span *ngIf="i<item.AverageCustomerRating" class="fa fa-star checked"></span>
-                        <span *ngIf="i>=item.AverageCustomerRating" class="fa fa-star unchecked"></span>
-                    </div></td>
-                
-                </tr>
-    
-    </table>
-
-
-        <div class="info">
-      </div>
-   
+      
+    <div *ngIf="isProduct">
+        <app-admin-product></app-admin-product>
+    </div>
+    <div *ngIf="isCustomer">
+        <app-admin-customer></app-admin-customer>
+    </div>
+    <div *ngIf="isSale">
+        <app-admin-sales></app-admin-sales>
+    </div>
+  
 </div>
-</div>
+        </div>
 </body>
 </html>

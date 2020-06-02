@@ -47,12 +47,12 @@ export class PaymentComponent implements OnInit {
     
   }
   confirmPayment(){
-    // if(this.card.CVV==""||this.card.CardholderName==""||this.card.ExpirationDate==""||this.card.StartDate==""||this.address.city==""||this.address.country==""||this.address.label1=="")
-    // {
-    //   this.toastr.error("Please fill in the blank fields",
-    //     "Error!")
-    // }
-    // if{
+     if(this.card.CVV==""||this.card.CardholderName==""||this.card.ExpirationDate==""||this.card.StartDate==""||this.address.city==""||this.address.country==""||this.address.label1=="")
+     {
+       this.toastr.error("Please fill in the blank fields",
+         "Error!")
+     }
+     else{
       this.basketProducts =
       JSON.parse(localStorage.getItem("productinBasket")) || [];
     this.basketProducts.forEach( (element) => {
@@ -69,7 +69,12 @@ export class PaymentComponent implements OnInit {
      )
     });
       this.toastr.success("Your order has been successfully received","Successful");
+      localStorage.removeItem("productinBasket");
+      localStorage.removeItem("basketproductlength");
       this.router.navigate(["/home"]);
+     
+      
+      
     }
-  
+  }
 }

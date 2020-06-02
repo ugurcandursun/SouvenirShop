@@ -19,27 +19,39 @@ export class ProductprocessComponent implements OnInit {
     gender: ''}
   
     updateProduct={};
+ 
     isAdd:boolean=true;
     constructor(private http: HttpClient,
       private router: Router,
       private route: ActivatedRoute) {
-        if(localStorage.getItem("updateProduct"))
-        {
-          debugger;
-          this.updateProduct=JSON.parse(localStorage.getItem("updateProduct")) || [];
-          this.isAdd=false;
-        } 
+        
       }
  
   ngOnInit() {
     
-
+    
+      this.updateProduct={};
+      if(localStorage.getItem("updateProduct"))
+      {
+        debugger;
+        this.updateProduct=JSON.parse(localStorage.getItem("updateProduct")) || [];
+        this.isAdd=false;
+       
+      } 
     console.log(this.product);
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    localStorage.removeItem("updateProduct");
   }
   
     addDb()
     {
-      debugger;
+      
+    
+      
       this.updateProduct["AverageCustomerRating"]=0;
       this.updateProduct["ProductID"]=0;
       console.log(this.updateProduct)
@@ -47,7 +59,7 @@ export class ProductprocessComponent implements OnInit {
       .subscribe(element => {
         debugger;
       });
-      this.router.navigate(["/admin-product"]);
+      this.router.navigate(["/admin"]);
      
     }
       updateDb(product:any){

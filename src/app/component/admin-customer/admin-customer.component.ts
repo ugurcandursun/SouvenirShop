@@ -1,6 +1,7 @@
 import { Component, OnInit, DebugElement} from '@angular/core';
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+import { AuthencationService } from '../authencation/authencation.service';
 
 @Component({
   selector: 'app-admin-customer',
@@ -8,36 +9,28 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ['./admin-customer.component.css']
 })
 export class AdminCustomerComponent implements OnInit {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient,private authencationService:AuthencationService) {}
   customers: any = [];
  
   ngOnInit(): void {
-    this.http
-      .get("http://localhost:57367/api/user")
-      .toPromise()
-      .then((element) => {
-      
-        this.customers = element;
-      });
+    this.authencationService.getAllUser().subscribe(data=>{
+      this.customers = data;
+    });
     
   }
   //insert
   clickAdd($event,customer:any) {
   // this.router.navigate(["/"]);
+  this.router.navigate(["/customer-process"])
   }
 //update
-clickUpdate($event,customer:any) {
-    localStorage.setItem('customerID',customer.CustomerID);
-  //  this.router.navigate(["/"]);
- }
+
 //delete
 clickDelete($event,customer:any) {
-  
-  this.http.delete("http://localhost:57367/api/user/"+customer.CustomerID)
-  .toPromise()
-      .then((element) => {
-        
-        this.router.navigate(["admin-customer"]);
+  debugger;
+  this.authencationService.deleteUser(customer)
+  .subscribe((element) => {
+          this.customers=this.customers.filter(d=>d.UserID!==customer.UserID);
       });
   
 }

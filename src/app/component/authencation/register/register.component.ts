@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import * as CryptoJS from "crypto-js";
 import { toTypeScript } from "@angular/compiler";
+import { AuthencationService } from '../authencation.service';
+import { EncryptionService } from '../encryption.service';
 
 @Component({
   selector: "app-register",
@@ -17,7 +19,6 @@ export class RegisterComponent implements OnInit {
     Name: "",
     Surname: "",
     Email_Address: "",
-
     IsLogin: false,
     isAdmin:false,
     Password: "",
@@ -32,35 +33,18 @@ export class RegisterComponent implements OnInit {
   constructor(
     private httpClinet: HttpClient,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authencationService:AuthencationService,private encryptionService:EncryptionService
+    
   ) {}
   secretKey = "YourSecretKeyForEncryption&Descryption";
-  ngOnInit() {
-    this.httpClinet.get(this.rootURL + "/user").subscribe((response) => {
-      this.allCustomer = response;
-    });
+  ngOnInit() {  
+   this.authencationService.getAllUser().subscribe(data=>{
+    this.allCustomer = data;
+  });
+  
   }
-  encryptData(data) {
-    try {
-      return CryptoJS.AES.encrypt(
-        JSON.stringify(data),
-        this.secretKey
-      ).toString();
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  decryptData(data) {
-    try {
-      const bytes = CryptoJS.AES.decrypt(data, this.secretKey);
-      if (bytes.toString()) {
-        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      }
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  
   savecustomer() {
     if(this.customer.Password==""||this.customer.Email_Address==""||this.customer.Surname==""||this.customer.Name=="")
     {
@@ -81,11 +65,10 @@ export class RegisterComponent implements OnInit {
             );
             this.flag=true;
           } else {
-            this.customer.Password = this.encryptData(this.customer.Password);
-            this.httpClinet
-              .post(this.rootURL + "/user", this.customer)
-              .toPromise()
-              .then((response) => {});
+            this.customer.Password = this.encryptionService.encryptData(this.customer.Password);
+            this.authencationService.addUser(this.customer).subscribe(data=>{
+              
+            })
             this.toastr.success("Register is successful", "Message");
             this.router.navigate(["/login"]);
           }

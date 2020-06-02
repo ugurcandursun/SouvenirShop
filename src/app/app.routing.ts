@@ -23,6 +23,8 @@ import { AdminProductComponent } from  './component/admin-product/admin-product.
 import { ProductprocessComponent } from './component/productprocess/productprocess.component';
 import { AdminCustomerComponent } from './component/admin-customer/admin-customer.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { CustomerprocessComponent } from './component/customerprocess/customerprocess.component';
+import { AdminSalesComponent } from './component/admin-sales/admin-sales.component';
 const APP_ROUTES: Routes = [
     
     {path: 'create', component: EmployeeComponent },
@@ -47,6 +49,8 @@ const APP_ROUTES: Routes = [
     {path:"productprocess", component:ProductprocessComponent},
     {path: "admin-customer", component:AdminCustomerComponent},
     {path: "admin", component:AdminComponent},
+    {path:"customer-process",component:CustomerprocessComponent},
+    {path:"admin-sales",component:AdminSalesComponent}
    
     
 ];
